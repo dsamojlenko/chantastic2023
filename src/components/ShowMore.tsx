@@ -1,22 +1,22 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useRef } from "react";
 
 const ShowMore = ({ children }: { children: ReactNode }) => {
-  const [showMore, setShowMore] = React.useState(false);
-  const textRef = useRef(null);
+  const [expanded, setExpanded] = React.useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
 
   return (
     <>
-      <p ref={textRef} className={`w-1/2 my-4 ${!showMore && "truncate"}`}>
+      <p ref={textRef} className={`max-h-20 my-4 ${!expanded && "truncate"}`}>
         {children}
       </p>
       <button
         onClick={() => {
-          setShowMore(!showMore);
-          console.log(textRef.current.scrollHeight);
+          setExpanded(!expanded);
+          textRef.current && console.log(textRef.current.scrollHeight);
         }}
       >
-        Show {showMore ? "less" : "more"}
+        Show {expanded ? "less" : "more"}
       </button>
     </>
   );

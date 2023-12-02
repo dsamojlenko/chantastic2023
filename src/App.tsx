@@ -1,3 +1,5 @@
+import ShowMore from "@components/ShowMore";
+
 function App() {
   return (
     <div className="m-8">
