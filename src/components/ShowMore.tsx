@@ -7,7 +7,7 @@ const ShowMore = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <p ref={textRef} className={`max-h-20 my-4 ${!expanded && "truncate"}`}>
+      <p ref={textRef} className={`my-4 ${!expanded && "truncate"}`}>
         {children}
       </p>
       <button
