@@ -1,9 +1,16 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { useRef } from "react";
 
 const ShowMore = ({ children }: { children: ReactNode }) => {
   const [expanded, setExpanded] = React.useState(false);
+  const [scrollHeight, setScrollHeight] = React.useState(0);
   const textRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (textRef.current) {
+      setScrollHeight(textRef.current.scrollHeight);
+    }
+  }, [expanded]);
 
   return (
     <>
@@ -13,11 +20,12 @@ const ShowMore = ({ children }: { children: ReactNode }) => {
       <button
         onClick={() => {
           setExpanded(!expanded);
-          textRef.current && console.log(textRef.current.scrollHeight);
         }}
       >
         Show {expanded ? "less" : "more"}
       </button>
+      <br />
+      scrollheight: {scrollHeight}
     </>
   );
 };
